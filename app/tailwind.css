@@ -1,3 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    /* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+
+    /* Hide touch feeback in mobile */
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -moz-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+    display: none;
+}
+
+.font_proximanova {
+    font-family: "proxima-nova", sans-serif;
+}
+
+.font_poppins {
+    font-family: 'Poppins', sans-serif;
+}
+
+.font_nunito {
+    font-family: "Nunito", sans-serif;
+}
+
+.outlet_container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.15fr 2fr;
+    max-width: 728px;
+    margin: 0 auto;
+}
+
+.flex_center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex_between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex_around {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.flex_col_center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid_center {
+    display: grid;
+    place-content: center;
+}
+
+.border_1 {
+    border: 1px solid black;
+}
+
+.borderwhite_1 {
+    border: 1px solid white;
+}
+
+.border_btn {
+    border: 1px solid #dcdcdc;
+}
+
+.border_lightblue {
+    border: 1px solid #67A3FF;
+}
+
+.bg__blur {
+    backdrop-filter: blur(15px) saturate(166%);
+    -webkit-backdrop-filter: blur(19px) saturate(130%);
+    background-color: rgba(222, 222, 234, 0.3);
+    border-radius: 7px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+.box__shadow {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.sc__card__shadow {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.feed__card__shadow {
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+}
+
+.aadhan__nav_logo {
+    position: relative;
+    overflow: hidden;
+}
+
+.aadhan__nav_logo::before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 100%;
+    top: 0;
+    left: -100px;
+    opacity: 0.8;
+    animation: shine 3.5s infinite linear;
+    background-image: linear-gradient(120deg,
+            rgb(255, 255, 255, 0) 30%,
+            rgb(255, 255, 255, .8),
+            rgb(255, 255, 255, 0) 70%);
+}
+
+@keyframes shine {
+    0% {
+        left: -100px;
+    }
+
+    20% {
+        left: 100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+/* Media Queries */
+@media screen and (max-width: 728px) {
+    .outlet_container {
+        width: 100%;
+        margin: 0;
+    }
+}
