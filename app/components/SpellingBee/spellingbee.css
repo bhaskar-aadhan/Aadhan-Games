@@ -48,3 +48,7 @@
 .hexa_central:after {
     border-top-color: #f7da21;
 }
+
+.spellingbee_correctword:after{
+    content: ', ';
+}

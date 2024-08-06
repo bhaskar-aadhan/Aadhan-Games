@@ -12,6 +12,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import { NextUIProvider } from "@nextui-org/react";
 import "./tailwind.css";
 
 export const links: LinksFunction = () => [
@@ -52,7 +53,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
       >
         <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b177480361274c029fe043a7ae993596"}'></script>
         <QueryClientProvider client={queryClient}>
-          {children}
+          <NextUIProvider>
+            {children}
+          </NextUIProvider>
           <ScrollRestoration />
           <Scripts />
         </QueryClientProvider>
