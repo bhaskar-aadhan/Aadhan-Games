@@ -11,7 +11,7 @@ export default function ScoreProgress({ UserLevelData, score }) {
             formatOptions={{ style: "decimal" }}
             color="warning"
             showValueLabel={true}
-            className="max-w-md"
+            className=""
         />
     );
 }

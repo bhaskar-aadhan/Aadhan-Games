@@ -81,8 +81,8 @@ export default function App() {
           <div className="aadhan__nav_logo w-[45px]">
             <img src="/favicon.svg" alt="aadhan" className="w-full rounded-lg" />
           </div>
-          <div className="h-full border-[1px] border-gray-300"></div>
-          <div className="text-[1.35rem] font-bold">{navbarTag?.toUpperCase()}</div>
+          <div className="h-[70%] border-[1px] border-gray-300"></div>
+          <div className="font_spacegrotesk text-[1.55rem] font-bold">{navbarTag?.toUpperCase()}</div>
         </div>
       </div>
       <div className="main_container w-full h-full">

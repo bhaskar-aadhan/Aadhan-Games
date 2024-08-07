@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@nextui-org/react": "^2.4.6",
+    "@radix-ui/react-dialog": "^1.1.1",
     "@remix-run/cloudflare": "^2.10.3",
     "@remix-run/cloudflare-pages": "^2.10.3",
     "@remix-run/react": "^2.10.3",

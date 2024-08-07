@@ -13,7 +13,6 @@ const scoreRanks = [
 export const getUserLevelData = (score) => {
     for (const { min, rank } of scoreRanks) {
         if (score >= min) {
-            console.log("rank: ", score, min, rank)
             return rank;
         }
     }
@@ -22,8 +21,7 @@ export const getUserLevelData = (score) => {
 
 export const scoreValidator = (word) => {
     if (word.length >= 4) {
-        return word.length
-    } else if (word.length === 7) {
-        return 7
+        return word.length + (word.length === 7 ? 7 : 0) + 1;
     }
+    return 0;
 }
