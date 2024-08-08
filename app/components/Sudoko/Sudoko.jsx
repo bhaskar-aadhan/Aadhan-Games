@@ -1,7 +1,19 @@
 import { useState } from "react";
+import './sudoko.css';
 
-export default function Sudoko() {
-    const [grid, setGrid] = useState(generateSudoku());
+export default function Sudoko({ sudokoData }) {
+    const [grid, setGrid] = useState(sudokoData);
+    const [selection, setSelection] = useState(sudokoData);
+    const sudokoCol = Array(9).fill("-")
+    const handleBtn = (e) => {
+        setSelection(e.target.value)
+    }
+
+    const handleSudokoCell = (row, col) => {
+        // sudokoCol[row][col] = selection
+        sudokoCol[col] = selection
+        console.log(sudokoCol[row][col], sudokoCol[col])
+    }
 
     function handleChange(e, row, col) {
         const newGrid = grid.map((r) => [...r]);
@@ -9,30 +21,33 @@ export default function Sudoko() {
         setGrid(newGrid);
     }
 
+    console.log("grid: ", grid, sudokoCol,selection)
     return (
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(9, 35px)", gap: "5px" }} className="rounded-md justify-center">
-            {grid.map((row, rowIndex) =>
-                row.map((cell, colIndex) => (
-                    <input
-                        key={`${rowIndex}-${colIndex}`}
-                        value={cell}
-                        onChange={(e) => handleChange(e, rowIndex, colIndex)}
-                        style={{ width: "35px", height: "35px", textAlign: "center", fontSize: "18px" }}
-                        className="border-[1px] border-gray-500 rounded-md"
-                    />
-                ))
-            )}
+        <div className="flex_col_center pt-[3rem] px-2 gap-5">
+            <table className="border-[3px] border-solid border-gray-500 rounded-lg">
+                <tbody>
+                    {Array(9).fill("").map((row, rowI) => {
+                        return (
+                            <tr key={rowI} id={`${rowI}`} className={`${rowI} ${(rowI + 1) % 3 === 0 && rowI != 8 ? "sudoko_row_border" : ""}`}>
+                                {sudokoCol.map((col, colI) => {
+                                    return (
+                                        <td onClick={() => handleSudokoCell(rowI, colI)} key={colI} id={`${rowI}-${colI}`} className={`${rowI}-${colI} w-[40px] h-[40px] ${(colI + 1) % 3 === 0 && colI != 8 ? "sudoko_col_border" : ""} border-[1.5px] border-solid border-y-gray-300  text-center`}>
+                                            {col}
+                                        </td>
+                                    )
+                                })}
+                            </tr>
+                        )
+                    })}
+                </tbody>
+            </table>
+            <div className="flex_center border">
+                <button value={"1"} onClick={handleBtn} className="border-[1.5px] border-solid border-y-gray-300 p-2 w-[50px] h-[50px text-center flex_center]">1</button>
+                <button value={"2"} onClick={handleBtn} className="border-[1.5px] border-solid border-y-gray-300 p-2 w-[50px] h-[50px text-center flex_center]">2</button>
+                <button value={"3"} onClick={handleBtn} className="border-[1.5px] border-solid border-y-gray-300 p-2 w-[50px] h-[50px text-center flex_center]">3</button>
+                <button value={"4"} onClick={handleBtn} className="border-[1.5px] border-solid border-y-gray-300 p-2 w-[50px] h-[50px text-center flex_center]">4</button>
+                <button value={"5"} onClick={handleBtn} className="border-[1.5px] border-solid border-y-gray-300 p-2 w-[50px] h-[50px text-center flex_center]">5</button>
+            </div>
         </div>
     );
-}
-
-function generateSudoku() {
-    // Generate a random puzzle (this is just a placeholder for a more complex generation)
-    const grid = Array.from({ length: 9 }, () => Array(9).fill(""));
-    for (let i = 0; i < 20; i++) {
-        const row = Math.floor(Math.random() * 9);
-        const col = Math.floor(Math.random() * 9);
-        grid[row][col] = Math.floor(Math.random() * 9) + 1;
-    }
-    return grid;
 }

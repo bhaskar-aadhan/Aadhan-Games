@@ -1,0 +1,6 @@
+.sudoko_row_border{
+    border-bottom: 2px solid black;
+}
+.sudoko_col_border{
+    border-right: 2px solid black;
+}
