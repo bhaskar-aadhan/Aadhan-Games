@@ -122,6 +122,18 @@
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
 }
 
+.sudoko_number_btn, .sudoko_number_rmbtn{
+    width: 35px;
+    height: 35px;
+    padding: 5px;
+    margin: 2px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.sudoko_number_rmbtn{
+    width: fit-content;
+}
+
 .aadhan__nav_logo {
     position: relative;
     overflow: hidden;
