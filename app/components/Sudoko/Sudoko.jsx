@@ -1,6 +1,6 @@
 // import React, { useState, useEffect } from 'react';
 // import { motion } from 'framer-motion';
-// import './sudoko3.css';
+// import './sudoko.css';
 
 // function App() {
 //     const initialGrid = [
@@ -97,12 +97,12 @@
 //     };
 
 //     return (
-//         <div className="App">
-//             <div className="grid shadow-md">
+//         <div className="sudoko_app">
+//             <div className="sudoko_grid shadow-md">
 //                 {grid.map((row, rowIndex) => (
 //                     <div
 //                         key={rowIndex}
-//                         className={`row ${isRowError(rowIndex) ? 'error-row' : ''}`}
+//                         className={`sudoko_row ${isRowError(rowIndex) ? 'error-row' : ''}`}
 //                         style={{ borderBottom: (rowIndex + 1) % 3 === 0 && rowIndex != 8 ? "2px solid black" : null }}
 //                     >
 //                         {row.map((value, colIndex) => (
@@ -113,7 +113,7 @@
 //                                 max="9"
 //                                 value={value}
 //                                 onChange={(e) => handleInputChange(e.target.value, rowIndex, colIndex)}
-//                                 className={`cell ${isColumnError(colIndex) ? 'error-column' : ''
+//                                 className={`sudoko_cell ${isColumnError(colIndex) ? 'error-column' : ''
 //                                     } ${isSubGridError(rowIndex, colIndex) ? 'error-subgrid' : ''
 //                                     }`}
 //                                 disabled={initialGrid[rowIndex][colIndex] !== ''}
@@ -145,7 +145,7 @@
 
 // import React, { useState, useEffect } from 'react';
 // import { motion } from 'framer-motion';
-// import './sudoko3.css';
+// import './sudoko.css';
 
 // function App() {
 //     const initialGrid = [
@@ -233,18 +233,18 @@
 //     };
 
 //     return (
-//         <div className="App">
-//             <div className="grid shadow-md">
+//         <div className="sudoko_app">
+//             <div className="sudoko_grid shadow-md">
 //                 {grid.map((row, rowIndex) => (
 //                     <div
 //                         key={rowIndex}
-//                         className={`row ${isRowError(rowIndex) ? 'error-row' : ''}`}
+//                         className={`sudoko_row ${isRowError(rowIndex) ? 'error-row' : ''}`}
 //                         style={{ borderBottom: (rowIndex + 1) % 3 === 0 && rowIndex !== 8 ? "2px solid black" : null }}
 //                     >
 //                         {row.map((value, colIndex) => (
 //                             <div
 //                                 key={colIndex}
-//                                 className={`cell ${isColumnError(colIndex) ? 'error-column' : ''} ${isSubGridError(rowIndex, colIndex) ? 'error-subgrid' : ''} ${selectedCell.row === rowIndex && selectedCell.col === colIndex ? 'selected' : ''}`}
+//                                 className={`sudoko_cell ${isColumnError(colIndex) ? 'error-column' : ''} ${isSubGridError(rowIndex, colIndex) ? 'error-subgrid' : ''} ${selectedCell.row === rowIndex && selectedCell.col === colIndex ? 'selected' : ''}`}
 //                                 onClick={() => setSelectedCell({ row: rowIndex, col: colIndex })}
 //                                 style={{ borderRight: (colIndex + 1) % 3 === 0 && colIndex !== 8 ? "2px solid black" : null }}
 //                             >
@@ -258,7 +258,7 @@
 //                 {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(num => (
 //                     <motion.button
 //                         key={num}
-//                         whileTap={{ scale: 0.9, background:'#d3d3d3' }}
+//                         whileTap={{ scale: 0.9, background: '#d3d3d3' }}
 //                         onClick={() => handleInputChange(num)}
 //                         className="sudoko_number_btn"
 //                     >
@@ -307,8 +307,15 @@ function App() {
 
     const handleInputChange = (value) => {
         if (selectedCell.row !== null && selectedCell.col !== null) {
+            const { row, col } = selectedCell;
+
+            // Prevent removal if the cell is part of the initial grid
+            if (initialGrid[row][col] !== '') {
+                return;
+            }
+
             const newGrid = [...grid];
-            newGrid[selectedCell.row][selectedCell.col] = value;
+            newGrid[row][col] = value;
             setGrid(newGrid);
         }
     };
@@ -382,17 +389,18 @@ function App() {
                         style={{ borderBottom: (rowIndex + 1) % 3 === 0 && rowIndex !== 8 ? "2px solid black" : null }}
                     >
                         {row.map((value, colIndex) => (
-                            <div
+                            <button
                                 key={colIndex}
                                 className={`sudoko_cell ${isColumnError(colIndex) ? 'error-column' : ''} ${isSubGridError(rowIndex, colIndex) ? 'error-subgrid' : ''} ${selectedCell.row === rowIndex && selectedCell.col === colIndex ? 'selected' : ''}`}
                                 onClick={() => setSelectedCell({ row: rowIndex, col: colIndex })}
                                 style={{
                                     borderRight: (colIndex + 1) % 3 === 0 && colIndex !== 8 ? "2px solid black" : null,
-                                    backgroundColor: selectedCell.row === rowIndex && selectedCell.col === colIndex ? 'aqua' : '',
+                                    backgroundColor: selectedCell.row === rowIndex && selectedCell.col === colIndex ? 'aqua' : null,
+                                    // backgroundColor: initialGrid[rowIndex][colIndex] !== '' ? '#f0f0f0' : selectedCell.row === rowIndex && selectedCell.col === colIndex ? '#add8e6' : '',
                                 }}
                             >
                                 {value}
-                            </div>
+                            </button>
                         ))}
                     </div>
                 ))}
@@ -421,7 +429,7 @@ function App() {
             {isWin ?
                 <div>
                     <div className='font_josefinsans font-medium'>
-                        <div className="win-message">Congratulations! You have completed the Sudoku!</div>
+                        <div className="win-message my-2">Congratulations! You have completed the Sudoku!</div>
                     </div>
                     <motion.button whileTap={{ scale: 0.9 }} className='p-2 font-medium border-[1px] solid border-black rounded-md my-2 bg-[lightgreen]'>
                         New Game

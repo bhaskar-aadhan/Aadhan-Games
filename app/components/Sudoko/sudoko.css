@@ -9,7 +9,7 @@
 
 .sudoko_app {
     text-align: center;
-    padding: 20px;
+    padding: 5px;
 }
 
 .sudoko_grid {
@@ -23,16 +23,15 @@
 }
 
 .sudoko_cell {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     text-align: center;
     font-size: 1.5rem;
-    /* margin: 2px; */
-    border: 1px solid #ccc;
+    border: 0.7px solid #d3d3d3;
     transition: background-color 0.3s ease;
 }
 
-.error-row .cell {
+.error-row .sudoko_cell {
     background-color: rgba(255, 0, 0, 0.2);
 }
 
